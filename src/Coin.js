@@ -1,9 +1,12 @@
 import { FaTwitter, FaReddit } from "react-icons/fa";
 import gecko from "./coingecko_logo.png";
-
+import { FaPiggyBank, FaHome, FaSearch, FaStar } from "react-icons/fa";
+import { useContext } from 'react'
+import PageContext from "./PageContext";
 
 function Coin({ coin }) {
 
+  const { favorites, addCoinToFavorites } = useContext(PageContext);
   const {
     community_data: { twitter_followers, reddit_subscribers } = {
       twitter_followers: 0,
@@ -29,6 +32,14 @@ function Coin({ coin }) {
     borderRadius: "100%",
   };
 
+  const starStyle = {
+    color: "hsl(37, 67%, 58%)",
+    fontSize: "1.2em"
+  }
+  function addToFavorite(){
+    setFavorites(coin)
+  }
+
   return (
     <div className="mx-auto text-primary max-w-3xl">
       <div className="flex items-center mb-10">
@@ -53,6 +64,13 @@ function Coin({ coin }) {
         className="description-text bg-secondary p-8 rounded-lg leading-7"
         dangerouslySetInnerHTML={{ __html: dynamicSpan }}
       ></div>
+      <div className="mt-8 flex justify-end">
+      <button className="btn btn-accent text-white" onClick={() => addCoinToFavorites(coin)}>
+        Add to favorites <FaStar style={starStyle} className="ml-2" />
+      </button>
+      </div>
+
+      
     </div>
   );
 }

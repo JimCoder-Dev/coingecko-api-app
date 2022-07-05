@@ -22,7 +22,7 @@ function SearchPage() {
   }
   
   return (
-    <div className="pt-12">
+    <div className="pt-12 ">
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -65,7 +65,8 @@ function SearchPage() {
           </h1>
         ) : (
           searchCoin.map((coin) => (
-            <div className="flex justify-between text-primary py-2 max-w-2xl">
+            <div className="mx-auto max-w-3xl">
+              <div className="flex justify-between text-primary my-4">
               <div className="flex">
                 <img className="mr-2" src={coin.thumb} alt={coin.name} />
                 <h1>{coin.name}</h1>
@@ -76,6 +77,8 @@ function SearchPage() {
                 </p>
               </div>
             </div>
+            </div>
+            
           ))
         )}
       </div>

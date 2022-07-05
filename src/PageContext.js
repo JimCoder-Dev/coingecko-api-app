@@ -5,6 +5,7 @@ const PageContext = createContext();
 export const PageProvider = ({ children }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(true);
+  const [favorites, setFavorites] = useState([])
 
   function changePage(nextPage) {
     if (nextPage === "ADD") {
@@ -22,6 +23,14 @@ export const PageProvider = ({ children }) => {
     setLoading(loadingEl)
   }
 
+  function addCoinToFavorites(coin){
+    setFavorites(favorites => [...favorites, coin])
+  }
+
+  function deleteAllFavorites(){
+    setFavorites([])
+  }
+
   return (
     <PageContext.Provider
       value={{
@@ -29,6 +38,9 @@ export const PageProvider = ({ children }) => {
         changePage,
         loading,
         toggleLoading,
+        favorites, 
+        addCoinToFavorites, 
+        deleteAllFavorites
       }}
     >
       {children}
